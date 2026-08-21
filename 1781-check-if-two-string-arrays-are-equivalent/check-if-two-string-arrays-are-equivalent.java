@@ -1,31 +1,44 @@
 class Solution {
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-       int m=word1.length;
-       int n=word2.length;
-       int w1i=0;int i=0;
-       int w2i=0; int j=0;
+    //    int m=word1.length;
+    //    int n=word2.length;
+    //    int w1i=0;int i=0;
+    //    int w2i=0; int j=0;
        
-       while(w1i<m && w2i<n){
-        if(word1[w1i].charAt(i)!=word2[w2i].charAt(j)){
-            return false;
-        }
-        i++;
-        j++;
+    //    while(w1i<m && w2i<n){
+    //     if(word1[w1i].charAt(i)!=word2[w2i].charAt(j)){
+    //         return false;
+    //     }
+    //     i++;
+    //     j++;
 
-        if(i==word1[w1i].length()){
-            i=0;
-            w1i++;
-        }
+    //     if(i==word1[w1i].length()){
+    //         i=0;
+    //         w1i++;
+    //     }
 
-        if(j==word2[w2i].length()){
-            j=0;
-            w2i++;
-        }
-       }
+    //     if(j==word2[w2i].length()){
+    //         j=0;
+    //         w2i++;
+    //     }
+    //    }
 
-       if(w1i==m && w2i==n){
-        return true;
-       }
-       return false;
+    //    if(w1i==m && w2i==n){
+    //     return true;
+    //    }
+    //    return false;
+
+
+    StringBuilder sb= new StringBuilder();
+      StringBuilder ab= new StringBuilder();
+for(int i=0;i<word1.length;i++){
+    sb.append(word1[i]);
+}
+for(int i=0;i<word2.length;i++){
+    ab.append(word2[i]);
+} 
+ if(sb.toString().equals(ab.toString()))
+            return true;
+return false;
     }
 }
