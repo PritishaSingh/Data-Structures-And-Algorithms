@@ -18,13 +18,13 @@ class Solution {
                 s.push(part);
             }
         }
+        if(s.isEmpty()) return "/";
 
-        StringBuilder ans = new StringBuilder();
-
-        for (String dir : s) {
-            ans.append("/").append(dir);
-        }
-
-        return ans.length() == 0 ? "/" : ans.toString();
+      String res="";
+      while(!s.isEmpty()){
+        res="/"+s.pop()+res;
+        
+      }
+      return res;
     }
 }
