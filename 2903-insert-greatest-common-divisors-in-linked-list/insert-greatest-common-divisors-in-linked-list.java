@@ -22,15 +22,21 @@ class Solution {
         }
 
         ListNode currNode=head;
-        ListNode nextNode=head.next;
-        while(nextNode!=null){
-            ListNode temp=new ListNode(gcd(currNode.val,nextNode.val));
-            currNode.next=temp;
-            temp.next=nextNode;
+        // ListNode nextNode=head.next;
+        // while(nextNode!=null){
+        //     ListNode temp=new ListNode(gcd(currNode.val,nextNode.val));
+        //     currNode.next=temp;
+        //     temp.next=nextNode;
 
-            currNode=nextNode;
-            nextNode=nextNode.next;
-        }
+        //     currNode=nextNode;
+        //     nextNode=nextNode.next;
+        // }
+        // return head;
+
+        ListNode temp=insertGreatestCommonDivisors(head.next);
+        ListNode gcdNode= new ListNode(gcd(head.val, head.next.val));
+        gcdNode.next=temp;
+        head.next=gcdNode;
         return head;
     }
 }
