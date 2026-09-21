@@ -15,23 +15,18 @@
  */
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-       Queue<TreeNode> q=new LinkedList<>();
-       ArrayList<Integer> ans=new ArrayList<>();
-       if (root == null) return ans;
-       q.offer(root);
-       while(!q.isEmpty()){
-        int size=q.size();
-        int i=0; 
-        while(i<size){
-        TreeNode node=q.remove();
-        if(i==size-1) ans.add(node.val);
-        if(node.left!=null) q.offer(node.left);
-        if(node.right!=null) q.offer(node.right);
-         i++;
-        }
-       
+        List<Integer> ans=new ArrayList<>();
+        preorder(root, 1, ans);
+        return ans;
+    }
 
-       } 
-       return ans;
+    public void preorder(TreeNode root, int level, List<Integer> ans){
+        if(root==null) return;
+        if(level>ans.size()){
+            ans.add(root.val);
+
+        }
+        preorder(root.right, level+1, ans);
+        preorder(root.left, level+1, ans);
     }
 }
