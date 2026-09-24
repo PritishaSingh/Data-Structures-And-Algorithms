@@ -14,29 +14,34 @@
  * }
  */
 class Solution {
-    HashMap<Integer, Integer>hm=new HashMap<>();
-    int maxD=0;
+     class Pair {
+        int depth;
+        TreeNode node;
 
-    public void Depth(TreeNode root, int level){
-        if(root==null) return;
-        maxD=Math.max(maxD, level);
-        hm.put(root.val, level);
-        Depth(root.left, level+1);
-        Depth(root.right,level+1);
+        Pair(int depth, TreeNode node) {
+            this.depth = depth;
+            this.node = node;
+        }
     }
+
+    Pair solve(TreeNode root) {
+        if (root == null) {
+            return new Pair(0, null);
+        }
+
+        Pair l = solve(root.left);
+        Pair r = solve(root.right);
+
+        if (l.depth == r.depth) {
+            return new Pair(l.depth + 1, root);
+        } else if (l.depth > r.depth) {
+            return new Pair(l.depth + 1, l.node);
+        } else {
+            return new Pair(r.depth + 1, r.node);
+        }
+    }
+
     public TreeNode lcaDeepestLeaves(TreeNode root) {
-        Depth(root,0);
-       return lca(root);
-
+        return solve(root).node;
     }
-     
-    public TreeNode lca(TreeNode root){
-        if(root==null || hm.get(root.val)==maxD) return root;
-        TreeNode leftN=lca(root.left);
-        TreeNode rightN=lca(root.right);
-        if(leftN!=null && rightN!=null) return root;
-        if(leftN!=null) return leftN;
-        return rightN;
-    }
-
 }
