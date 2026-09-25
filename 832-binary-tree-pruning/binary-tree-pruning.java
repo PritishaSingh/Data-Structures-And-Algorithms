@@ -14,26 +14,10 @@
  * }
  */
 class Solution {
-
-    public boolean isOne(TreeNode root){
-        if(root==null) return false;
-        if(root.val==1)return true;
-       
-       
-        return  isOne(root.left) ||  isOne(root.right);
-    }
     public TreeNode pruneTree(TreeNode root) {
         if(root==null) return null;
-        if(!isOne(root.left)){
-            root.left=null;
-
-        }
-
-        if(!isOne(root.right)){
-            root.right=null;
-        }
-        pruneTree(root.left);
-        pruneTree(root.right);
+        root.left=pruneTree(root.left);
+        root.right=pruneTree(root.right);
         if(root.left==null &&  root.right==null && root.val==0){
             return null;
 
