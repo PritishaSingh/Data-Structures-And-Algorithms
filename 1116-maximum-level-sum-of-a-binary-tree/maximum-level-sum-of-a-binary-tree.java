@@ -14,32 +14,27 @@
  * }
  */
 class Solution {
+    HashMap<Integer, Integer> hm;
+    void dfs(TreeNode root, int l){
+        if(root==null) return;
+        hm.put(l, hm.getOrDefault(l, 0) + root.val);
+        dfs(root.left, l+1);
+        dfs(root.right, l+1);
 
+    }
     public int maxLevelSum(TreeNode root) {
-        int maxlevel=1;
-        int maxsum=Integer.MIN_VALUE;
-        int level=1;
-        
-        Queue<TreeNode> q=new LinkedList<>();
-        q.offer(root);
-        while(!q.isEmpty()){
-            int size=q.size();
-            int i=0;
-            int sum=0;
-            while(i<size){
-                TreeNode node=q.remove();
-                sum+=node.val;
-                if(node.left!=null) q.offer(node.left);
-                if(node.right!=null) q.offer(node.right);
-                i++;
+        hm=new HashMap<>();
+        dfs(root,1);
+        int ms=Integer.MIN_VALUE;
+        int resl=0;
+        for(Map.Entry<Integer, Integer> set:hm.entrySet()){
+            int l=set.getKey();
+            int sum=set.getValue();
+            if(ms<sum){
+                ms=sum;
+                resl=l;
             }
-            
-            if(sum>maxsum){
-                maxsum=sum;
-                maxlevel=level;
-            }
-            level+=1;
         }
-        return maxlevel;
+        return resl;
     }
 }
